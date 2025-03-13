@@ -1,4 +1,4 @@
-import { v as _variable} from "../styles/variables";
+import { v } from "../styles/variables";
 import {
     AiOutlineHome,
     AiOutlineSetting,
