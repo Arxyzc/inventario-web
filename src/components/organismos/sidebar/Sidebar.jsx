@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { LinksArray, SecondarylinksArray, SidebarCard, ToggleTema, } from "../../../index";
+import { LinksArray, SecondarylinksArray, SidebarCard, ToggleTema } from "../../../index";
 import {v} from "../../../styles/variables"
 import { NavLink } from "react-router-dom";
 
@@ -15,7 +15,7 @@ export function Sidebar({ state, setState }) {
                 <div className="imgcontent">
                     <img src={v.logo} />
                 </div>
-                <h2>StockPRO</h2>
+                <h2>InventarioWEB</h2>
                 </div>
                 {LinksArray.map(({ icon, label, to }) => (
                     <div className={state ? "LinkContainer active" : "LinkContainer"} key={label}>
@@ -38,13 +38,31 @@ export function Sidebar({ state, setState }) {
                         </NavLink>
                     </div>
                 ))}
-                <ToggleTema/>
+                <ToggleWrapper $isopen={state}>
+                    <ToggleTema/>
+                </ToggleWrapper>
                 <Divider />
                 {state && <SidebarCard />}
             </Container>
         </Main>
     );
 }
+
+// Nuevo componente para el wrapper del ToggleTema
+const ToggleWrapper = styled.div`
+    position: relative;
+    margin: 5px 0;
+    padding: 0 5%;
+    transition: all 0.3s ease-in-out;
+    
+    ${({ $isopen }) => $isopen && `
+        left: 50%;
+        transform: translateX(-50%);
+        width: fit-content;
+    `}
+`;
+
+// Resto de los estilos se mantienen igual
 const Container = styled.div`
     color: ${(props) => props.theme.text};
     background: ${(props) => props.theme.bg};
@@ -164,6 +182,7 @@ const Container = styled.div`
         }
     }
 `;
+
 const Main = styled.div`
     .Sidebarbutton {
         position: fixed;
@@ -185,6 +204,7 @@ const Main = styled.div`
         color: ${(props) => props.theme.text};
     }
 `;
+
 const Divider = styled.div`
     height: 1px;
     width: 100%;

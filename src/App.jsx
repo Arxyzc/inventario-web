@@ -1,5 +1,5 @@
 import styled, { ThemeProvider } from 'styled-components';
-import { AuthContextProvider, MyRouter, Light, Dark } from './index'
+import { AuthContextProvider, MyRouter, Light, Dark, Sidebar, MenuHambur } from './index'
 import { createContext, useState } from 'react';
 import { Device } from './styles/breackpoints';
 
@@ -16,12 +16,12 @@ function App() {
     <ThemeContext.Provider value={{theme, setTheme}}>
       <ThemeProvider theme={themeStyle}>
         <AuthContextProvider>
-          <Container className={sidebarOpen?"active":""}>
+          <Container className={sidebarOpen ? "active" : ""}>
             <section className="ContentSidebar">
-              Sidebar
+              <Sidebar state={sidebarOpen} setState={() => setSidebarOpen(!sidebarOpen)} />
             </section>
             <section className="ContentMenuhambur">
-              Menu Hamburgesa
+              <MenuHambur />
             </section>
             <section className="ContentRoutes">
               <MyRouter />
